@@ -10,7 +10,8 @@ class ExcelExe:
     def __init__(self):
         self.wb = xlwt.Workbook()
 
-    def set_style(self, name, height, bold=False, horz=xlwt.Alignment.HORZ_CENTER, border=False):
+    def set_style(self, name, height, bold=False, horz=xlwt.Alignment.HORZ_CENTER, border=False,
+                  part_border={'left': True, 'right': True, 'top': True, 'bottom': True}):
         style = xlwt.XFStyle()
         font = xlwt.Font()
         font.name = name
@@ -22,11 +23,11 @@ class ExcelExe:
         alignment.wrap = xlwt.Alignment.WRAP_AT_RIGHT
         if border:
             border = xlwt.Borders()
-            border.left = xlwt.Borders.THIN
-            border.right = xlwt.Borders.THIN
-            border.bottom = xlwt.Borders.THIN
-            border.top = xlwt.Borders.THIN
-            border.diag = xlwt.Borders.THIN
+            border.left = xlwt.Borders.THIN if (part_border.get('left')) else xlwt.Borders.NO_LINE
+            border.right = xlwt.Borders.THIN if (part_border.get('right')) else xlwt.Borders.NO_LINE
+            border.bottom = xlwt.Borders.THIN if (part_border.get('bottom')) else xlwt.Borders.NO_LINE
+            border.top = xlwt.Borders.THIN if (part_border.get('top')) else xlwt.Borders.NO_LINE
+            # border.diag = xlwt.Borders.THIN
             style.borders = border
         style.font = font
         style.alignment = alignment
@@ -37,9 +38,36 @@ class ExcelExe:
         # print(obj)
         fsgb = u'仿宋_GB2312'
         sheet = self.wb.add_sheet(obj['userName'])
-        # sheet.col(0).height=
+
+        sheet.col(0).width = int(256 * (95 / 6))
+        sheet.col(1).width = int(256 * (65 / 6))
+        sheet.col(2).width = int(256 * (65 / 6))
+        sheet.col(3).width = int(256 * (95 / 6))
+        sheet.col(4).width = int(256 * (65 / 6))
+        sheet.col(5).width = int(256 * (125 / 6))
+
+        height40 = xlwt.easyxf('font:height 640;')
+        sheet.row(0).set_style(height40)
+        height60 = xlwt.easyxf('font:height 960;')
+        sheet.row(1).set_style(height60)
+        height30 = xlwt.easyxf('font:height 480;')
+        sheet.row(2).set_style(height30)
+        height50 = xlwt.easyxf('font:height 800;')
+        sheet.row(3).set_style(height50)
+        sheet.row(4).set_style(height40)
+        sheet.row(5).set_style(height40)
+        sheet.row(6).set_style(height40)
+        sheet.row(7).set_style(height40)
+        sheet.row(8).set_style(height40)
+
+        height140 = xlwt.easyxf('font:height ' + str(140 * 16) + ';')
+        sheet.row(9).set_style(height140)
+        height25 = xlwt.easyxf('font:height ' + str(25 * 16) + ';')
+        sheet.row(10).set_style(height25)
+        sheet.row(11).set_style(height25)
+
         sheet.write_merge(0, 0, 0, 5, 'DJDX20190000',
-                          self.set_style('Cambria', 16 * 20, False, xlwt.Alignment.HORZ_RIGHT))
+                          self.set_style('Cambria', 20 * 16, False, xlwt.Alignment.HORZ_RIGHT))
         sheet.write_merge(1, 1, 0, 5, u'中国大唐集团公司培训项目综合评价表', self.set_style('Times New Roman', 22 * 20, True))
         title = self.set_style(name=fsgb, height=16 * 20, bold=True)
         sheet.write(2, 0, u'年度：', title)
@@ -82,14 +110,18 @@ class ExcelExe:
         sheet.write(8, 3, u'合格分数线', style)
         sheet.write_merge(8, 8, 4, 5, u'60分', style)
 
-        sheet.write_merge(9, 15, 0, 0, u'岗位\n（工种）\n建议', style)
+        sheet.write_merge(9, 11, 0, 0, u'岗位\n（工种）\n建议', style)
 
         text = obj.get('advice') if (
-            obj.get('advice')) else u'\n    根据    规定，该同志在集团公司2019年    培训项目中达到考核标准，企业可依据实际情况，在上岗时予以参考。\n' \
-                                    u'                    中国大唐集团公司培训专用章' \
-                                    u'\n                      2019年  月  日'
+            obj.get('advice')) else u'\n    根据    规定，该同志在集团公司2019年    培训项目中达到考核标准，企业可依据实际情况，在上岗时予以参考。'
+        sheet.write_merge(9, 9, 1, 5, text, self.set_style(name=fsgb, height=12 * 20, border=True,
+                                                           part_border={'top': True, 'left': True, 'right': True}))
 
-        sheet.write_merge(9, 15, 1, 5, text, style)
+        sheet.write_merge(10, 10, 1, 5, u'                    中国大唐集团公司培训专用章',
+                          self.set_style(name=fsgb, height=12 * 20, border=True, part_border={'right': True}))
+        sheet.write_merge(11, 11, 1, 5, u'                      2019年  月  日',
+                          self.set_style(name=fsgb, height=12 * 20, border=True,
+                                         part_border={'bottom': True, 'right': True}))
 
     def execute(self, file_obj=None, source='source'):
 
