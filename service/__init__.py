@@ -123,10 +123,10 @@ class ExcelExe:
                           self.set_style(name=fsgb, height=12 * 20, border=True,
                                          part_border={'bottom': True, 'right': True}))
 
-    def execute(self, file_obj=None, source='source'):
+    def execute(self, file_path=None, source='source'):
 
-        if file_obj:
-            workbook = xlrd.open_workbook(file_contents=file_obj.read())
+        if file_path:
+            workbook = xlrd.open_workbook(file_path)
             path = './static/' + str(round(time.time() * 1000)) + '.xls'
         else:
             file_url = '../' + source + '.xls'

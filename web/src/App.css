@@ -1,0 +1,50 @@
+@import '~antd/dist/antd.css';
+
+.App {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  margin-bottom: 20px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+}
+.content .upload{
+  margin-right: 20px;
+}
+
+/*.inputFile{*/
+/*    visibility: hidden;*/
+/*}*/
+/*.inputFile + label {*/
+/*    font-size: 1.25em;*/
+/*    font-weight: 700;*/
+/*    color: white;*/
+/*    background-color: pink;*/
+/*    display: inline-block;*/
+/*    cursor: pointer;*/
+/*}*/

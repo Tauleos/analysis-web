@@ -3,8 +3,9 @@ import json
 import os
 import time
 from service import ExcelExe
-from flask import Flask, render_template, request, make_response
+from flask import Flask, render_template, request, make_response, send_from_directory, send_file
 from flask_cors import CORS
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 CORS(app)
@@ -19,10 +20,17 @@ def main_page():
 def upload():
     if request.method == 'POST':
         f = request.files['file']
-        # f.save(os.getcwd()+'/uploads/'+secure_filename(f.filename))
-        desc = ExcelExe().execute(f)
-    obj = json.dumps({'success': True, 'url': desc[1:]})
-    return bytes(obj, 'utf-8')
+        f.save(os.getcwd() + '/uploads/' + secure_filename(f.filename))
+        obj = json.dumps({'success': True, 'filename': secure_filename(f.filename)})
+        return bytes(obj, 'utf-8')
+
+
+@app.route('/exe', methods=['POST'])
+def exe():
+    filename = request.get_json()['filename']
+    path = os.getcwd() + '/uploads/' + secure_filename(filename)
+    desc = ExcelExe().execute(path)
+    return bytes(desc[1:], 'utf-8')
 
 
 @app.route('/mg', methods=['POST'])
@@ -35,3 +43,13 @@ def upload_img():
         f.save(url)
         make_response()
         return bytes('http://127.0.0.1:5000' + path, 'utf-8')
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='img/vnd.microsoft.icon')
+
+
+@app.route('/manifest.json')
+def manifest():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'manifest.json')

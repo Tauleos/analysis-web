@@ -13,5 +13,5 @@ gunicorn -b 0.0.0.0 app:app
 
 # TODO
 - [x] add style
-- [ ] fe with react
+- [x] fe with react
 - [ ] add comments
