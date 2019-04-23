@@ -137,7 +137,7 @@ class ExcelExe:
 
         if file_path:
             workbook = xlrd.open_workbook(file_path)
-            path = './server/excel/' + str(round(time.time() * 1000)) + '.xls'
+            path = './static/excel/' + str(round(time.time() * 1000)) + '.xls'
         else:
             file_url = '../' + source + '.xls'
             workbook = xlrd.open_workbook(file_url)
@@ -185,7 +185,7 @@ class ExcelExe:
                 excel_list.append(row_object)
 
         self.wb.save(path)
-        return path
+        return path.replace('static', 'server')
 
 
 if __name__ == '__main__':
