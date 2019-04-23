@@ -137,7 +137,7 @@ class ExcelExe:
 
         if file_path:
             workbook = xlrd.open_workbook(file_path)
-            path = './static/' + str(round(time.time() * 1000)) + '.xls'
+            path = './static/excel/' + str(round(time.time() * 1000)) + '.xls'
         else:
             file_url = '../' + source + '.xls'
             workbook = xlrd.open_workbook(file_url)
