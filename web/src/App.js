@@ -13,7 +13,7 @@ class App extends Component {
     filename: '',
     targetUrl: undefined
   };
-  error_message = '上传失败，请联系可怜的老公！';
+  error_message = '上传失败，请联系康珺馨可怜的老公！';
   upload_props = {
     name: 'file',
     action: `${process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:5000' : ''}/server/upload`,

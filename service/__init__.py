@@ -122,7 +122,7 @@ class ExcelExe:
                                          part_border={'top': True, 'left': True, 'right': True}))
 
         sheet.write_merge(10, 10, 1, 5, u'                    中国大唐集团公司培训专用章',
-                          self.set_style(name=fsgb, height=12 * 20, border=True, part_border={'right': True}))
+                          self.set_style(name=fsgb, height=14 * 20, border=True, part_border={'right': True}))
         sheet.write_merge(11, 11, 1, 5, u'                      ' + obj.get('advice_time'),
                           self.set_style(name=fsgb, height=12 * 20, border=True,
                                          part_border={'bottom': True, 'right': True}))
