@@ -16,7 +16,7 @@ class App extends Component {
   error_message = '上传失败，请联系可怜的老公！';
   upload_props = {
     name: 'file',
-    action: `${process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:5000' : ''}/upload`,
+    action: `${process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:5000' : ''}/server/upload`,
     onChange: ({file}) => {
       if (file.status === 'done') {
         if (file.response.success) {
@@ -35,7 +35,7 @@ class App extends Component {
   };
 
   upload = () => {
-    instance.post('/exe', {filename: this.state.filename}).then((res) => {
+    instance.post('/server/exe', {filename: this.state.filename}).then((res) => {
       this.setState({
         targetUrl: res.data
       });
