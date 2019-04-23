@@ -11,9 +11,9 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route('/')
-def main_page():
-    return render_template('index.html')
+# @app.route('/')
+# def main_page():
+#     return render_template('index.html')
 
 
 @app.route('/server/upload', methods=['POST'])
@@ -45,9 +45,9 @@ def upload_img():
         return bytes('http://127.0.0.1:5000' + path, 'utf-8')
 
 
-@app.route('/server/excel/<filename>')
+@app.route('/server/excel/<filename>', methods=['GET'])
 def favicon(filename):
-    return send_from_directory(os.path.join(app.root_path, 'static'), filename)
+    return send_from_directory(os.path.join(app.root_path, 'static', 'excel'), filename)
 
 
 @app.route('/manifest.json')
