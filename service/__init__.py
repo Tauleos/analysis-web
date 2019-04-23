@@ -77,7 +77,7 @@ class ExcelExe:
 
         style = self.set_style(name=fsgb, height=12 * 20, bold=True, border=True)
         no_bold_style = self.set_style(name=fsgb, height=12 * 20, border=True)
-        comment_style = self.set_style(name=fsgb, height=10 * 20, border=False, horz=xlwt.Alignment.HORZ_LEFT)
+        comment_style = self.set_style(name=fsgb, height=9 * 20, border=False, horz=xlwt.Alignment.HORZ_LEFT)
 
         sheet.write(3, 0, u'姓名', style)
         sheet.write(3, 1, obj['userName'], no_bold_style)

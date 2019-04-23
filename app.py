@@ -16,7 +16,7 @@ def main_page():
     return render_template('index.html')
 
 
-@app.route('/upload', methods=['POST'])
+@app.route('/server/upload', methods=['POST'])
 def upload():
     if request.method == 'POST':
         f = request.files['file']
@@ -25,7 +25,7 @@ def upload():
         return bytes(obj, 'utf-8')
 
 
-@app.route('/exe', methods=['POST'])
+@app.route('/server/exe', methods=['POST'])
 def exe():
     filename = request.get_json()['filename']
     path = os.getcwd() + '/uploads/' + secure_filename(filename)
