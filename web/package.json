@@ -10,7 +10,8 @@
     "react": "^16.8.6",
     "react-app-rewired": "^2.1.1",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "uglifyjs-webpack-plugin": "^2.1.2"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -24,7 +25,10 @@
   "browserslist": [
     ">0.2%",
     "not dead",
-    "not ie <= 11",
+    "not ie <= 9",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "compression-webpack-plugin": "^2.0.0"
+  }
 }
