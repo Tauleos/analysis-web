@@ -45,9 +45,9 @@ def upload_img():
         return bytes('http://127.0.0.1:5000' + path, 'utf-8')
 
 
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='img/vnd.microsoft.icon')
+@app.route('/server/excel/<filename>')
+def favicon(filename):
+    return send_from_directory(os.path.join(app.root_path, 'static'), filename)
 
 
 @app.route('/manifest.json')
