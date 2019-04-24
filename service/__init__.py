@@ -118,7 +118,7 @@ class ExcelExe:
         text = obj.get('advice') if (
             obj.get('advice')) else u'\n    根据    规定，该同志在集团公司2019年    培训项目中达到考核标准，企业可依据实际情况，在上岗时予以参考。'
         sheet.write_merge(9, 9, 1, 5, text,
-                          self.set_style(name=fsgb, height=12 * 20, border=True, horz=xlwt.Alignment.HORZ_LEFT,
+                          self.set_style(name=fsgb, height=14 * 20, border=True, horz=xlwt.Alignment.HORZ_LEFT,
                                          part_border={'top': True, 'left': True, 'right': True}))
 
         sheet.write_merge(10, 10, 1, 5, u'                    中国大唐集团公司培训专用章',
