@@ -14,4 +14,5 @@ gunicorn -b 0.0.0.0 app:app
 # TODO
 - [x] add style
 - [x] fe with react
-- [ ] add comments
+- [x] add comments
+- [ ] remove excel pageHeader and pageFooter
