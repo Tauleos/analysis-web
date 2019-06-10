@@ -11,7 +11,8 @@
     "react-app-rewired": "^2.1.1",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
-    "uglifyjs-webpack-plugin": "^2.1.2"
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "prop-types": "latest"
   },
   "scripts": {
     "start": "react-app-rewired start",
